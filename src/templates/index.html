@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HANDWRITTEN TEXT RECOGNITION</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="design.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='design.css') }}">
+</head>
+
+<body>
+    <header>
+        <p style="text-align: center;">
+            <strong>HANDWRITTEN TEXT RECOGNITION</strong>
+        </p>
+    </header>
+    <div class="container">
+        <img class="pict" src="{{ url_for('static',filename='handwritten.jpg') }}">  
+        <a href="{{ url_for('index') }}" class="back-btn">Back</a>
+        
+        <img src="{{ img_url }}" alt="Uploaded Image" class="output-image" >
+        <p class="text">The text is: <textarea id="text">{{res}}</textarea></p>
+        <button onclick="speak()" class="convert-btn">convert to speech</button>
+
+    </div>
+
+
+
+    <script>
+        src = "{{ url_for('static',filename='script.js') }}"
+        function speak() {
+            var text = document.getElementById("text").value;
+            var speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+
+</html>

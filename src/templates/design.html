@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HANDWRITTEN TEXT RECOGNITION</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="design.css"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='design.css') }}">
+    </head>
+    <body>
+        <header>
+            <p style="text-align: center;">
+               <strong>HANDWRITTEN TEXT RECOGNITION</strong> 
+            </p>
+
+        </header>
+        <div class="container">
+            <img class="pict" src="{{ url_for('static',filename='handwritten.jpg') }}">  
+            
+            <img id="output-image" class="output-image" /><br>
+        
+            <div class="cont">   
+                <form action='/submit_image' method='POST' enctype="multipart/form-data">
+                    <input class="choose" type='file' name='image' id="inputfile" onchange="preview_image(event)"/>
+                    <input class="sub" type='submit'/>
+                </form>
+            </div>
+        </div>
+       
+
+        
+        <script type="text/javascript">
+            function preview_image(event) {
+              var reader = new FileReader();
+              reader.onload = function () {
+                var output = document.getElementById('output-image')
+                output.src = reader.result;
+              }
+              reader.readAsDataURL(event.target.files[0]);
+            }
+          </script>
+        
+    </body>
+</html>
